@@ -53,33 +53,21 @@ public class MainPage {
     public String getTweetTextField(){
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(tweetTextField));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         return driver.findElement(tweetTextField).getText();
     }
 
     public String getTweetTime(){
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(tweetTime));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         return driver.findElement(tweetTime).getText();
     }
 
     public String getDuplicatedTweetMessage(){
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.presenceOfElementLocated(tweetTime));
-        try {
-            Thread.sleep(4000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         return driver.findElement(duplicatedTweet).getText();
     }
 }

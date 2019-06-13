@@ -1,7 +1,10 @@
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
 import twitteruipages.LoginPage;
 import twitteruipages.MainPage;
 
@@ -19,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 
         @BeforeSuite
         public void setUp() {
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\avolovyk\\IdeaProjects\\drivers\\chromedriver.exe");
+           ChromeDriverManager.getInstance().version("2.46").setup();
             driver = new ChromeDriver();
 
             driver.manage().window().maximize();
@@ -56,7 +59,6 @@ import java.util.concurrent.TimeUnit;
             mainPage.clickDeleteConfirmation();
             Assert.assertNotEquals(mainPage.getTweetTextField(),tweetText,"Tweet status is present but should be deleted");
         }
-
 
         @AfterSuite
         public void tearDown(){

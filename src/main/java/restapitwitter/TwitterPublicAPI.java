@@ -28,7 +28,6 @@ public class TwitterPublicAPI {
     }
 
     public Map getStatusKeyValue(){
-       // BasicConfigurator.configure();
         Response response = given()
                 .spec(requestHelper.initSpec())
                 .when()
@@ -48,7 +47,6 @@ public class TwitterPublicAPI {
 
     public static void main(String[] args) {
         TwitterPublicAPI twitterPublicAPI = new TwitterPublicAPI();
-       // twitterPublicAPI.getStatusKeyValue();
         twitterPublicAPI.postDublicateStatus("Agile tests12334");
 
     }
@@ -91,7 +89,6 @@ public class TwitterPublicAPI {
 
 
     public Map postDestroyStatusesByID(String Status) {
-        //BasicConfigurator.configure();
 
         Response response = given()
                 .spec(requestHelper.initSpec())

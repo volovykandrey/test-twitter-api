@@ -16,36 +16,20 @@ public class TwitterBasicOperationsApiTests {
 
     @BeforeGroups("newTweetShouldBeAdded")
     public void createNewTweet(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }twitterPublicAPI.postUpdateStatus("Test Status: " + twitterPublicAPI.uniqueStatus);
-
+        twitterPublicAPI.postUpdateStatus("Test Status: " + twitterPublicAPI.uniqueStatus);
     }
 
 
     @Test (priority = 1)
     public void verifyPostStatusText() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Map<String, Object> hashMap;
         hashMap = twitterPublicAPI.postUpdateStatus("Test Status: " + twitterPublicAPI.uniqueStatus);
         Assert.assertEquals(hashMap.get("text"),"Test Status: " + twitterPublicAPI.uniqueStatus,"Post Status Text Is Incorrect" );
         Assert.assertEquals(hashMap.get("StatusCode"),"200","Status Code Is Not Equal 200 OK");
-
     }
 
     @Test (priority = 2, groups = "newTweetShouldBeAdded")
     public void verifyGetStatusFields() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Map<String, Object> hashMap;
         hashMap = twitterPublicAPI.getStatusKeyValue();
         String tweetText = String.valueOf(hashMap.get("text"));
@@ -60,15 +44,10 @@ public class TwitterBasicOperationsApiTests {
         Assert.assertEquals(retweetsCount,0, "Retweets Count Is More Than Zero ");
         Assert.assertEquals(hashMap.get("StatusCode"),"200","Status Code Is Not Equal 200 OK");
         Assert.assertEquals(createdTime,dateStr,"Date Is Not Equal To Created_At Value");
-
     }
+
     @Test(priority = 3, groups = "newTweetShouldBeAdded")
     public void verifyRemovedTweet(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         Map<String, Object> hashMap1;
         hashMap1 = twitterPublicAPI.getStatusKeyValue();
         String tweet_id = String.valueOf(hashMap1.get("id_str"));
@@ -83,20 +62,12 @@ public class TwitterBasicOperationsApiTests {
         hashMap3 = twitterPublicAPI.getStatusKeyValue();
 
         Assert.assertNotEquals(hashMap3.get("id_str"),tweet_id, "Tweet Is Present But Should Be Removed");
-
         createNewTweet();
     }
 
     @Test (priority = 4)
     public void checkDuplicateStatusMessage(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         twitterPublicAPI.postUpdateStatus("Test Status: " + twitterPublicAPI.uniqueStatus);
-
         Map<String, Object> hashMap;
         hashMap = twitterPublicAPI.postDublicateStatus("Test Status: " + twitterPublicAPI.uniqueStatus);
         String errorCode = String.valueOf(hashMap.get("code"));
@@ -110,13 +81,6 @@ public class TwitterBasicOperationsApiTests {
 
     @AfterMethod
     public void removeTweet(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         twitterPublicAPI.postDestroyStatusesByID(String.valueOf(twitterPublicAPI.getStatusKeyValue().get("id_str")));
     }
-
-
 }

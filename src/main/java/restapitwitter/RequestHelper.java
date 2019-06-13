@@ -46,8 +46,6 @@ public class RequestHelper {
 
         epochTime = date.getTime();
 
-        //log("Current Time in Epoch: " + epochTime);
-
         return epochTime;
 
     }
@@ -66,6 +64,5 @@ public class RequestHelper {
        return sdf2.format(createDate);
 
     }
-
 
 }
